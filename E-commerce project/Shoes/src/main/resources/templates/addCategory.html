@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section>
+<div class="container">
+
+			<h1>Add Category</h1>
+
+			<form action="submitCategory" class="contact-form" method="post">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Category name</label> <input type="text" id="category_name" name="category_name"
+								class="form-control" placeholder="Enter category">
+						</div>
+					</div>
+					
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-primary">
+							<a href="home">Go Back</a>
+						</div>
+					</div>
+				</div>
+			</form>
+
+</div></section>
+</body>
+</html>

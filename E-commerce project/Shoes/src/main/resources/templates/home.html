@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<section>
+<div class="container">
+<h1>Welcome <span th:text = "${session.user.getUsername()}"></span></h1>
+<h6 style="color:red;" th:text="${msg}"></h6>
+<h5><a href="addCategory">1. Add Footwear category</a></h5>
+<h5><a href="addFootwear">2. Add Footwear </a></h5>
+<h5><a href="stock">3. Stock</a></h5>
+<h5><a href="readCategory">4. Display Footwear category</a></h5>
+<h5><a href="readFootwear">5. Display all Footwears</a></h5>
+<h5><a href="footwearByCategory">6. Display all Footwears by category</a></h5>
+<h5><a href="customerInfo">7. Display all customers information</a></h5>
+<h5><a href="reportByDate">8. Purchase Report by date</a></h5>
+<h5><a href="reportByCategory">9. Purchase Report by Category</a></h5>
+<h5><a href="changePasswordAdmin">10. Change Password</a></h5>
+<h5><a href="logout">11. Logout</a></h5>
+
+</div>
+</section>
+
+</body>
+</html>

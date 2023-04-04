@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<h1>Stock</h1>
+
+			<form action="addStock" class="contact-form" method="post">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Footwear</label> <select id="footwear" name="footwear"
+								class="form-control">
+								<option th:each="footwear : ${footwears}"
+									th:value="${footwear.footwear_id}" th:text="${footwear.name}"></option>
+							</select>
+
+						</div>
+
+						<div class="form-group">
+							<label>Footwear Size</label> <input type="text" id="size"
+								name="size" class="form-control" placeholder="Enter size">
+						</div>
+
+						<div class="form-group">
+							<label>Footwear Quantity</label> <input type="text" id="quantity"
+								name="quantity" class="form-control"
+								placeholder="Enter quantity">
+						</div>
+
+					</div>
+
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-primary">
+							<a href="home">Go Back</a>
+
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>Footwear Name</th>
+						<th>Footwear Image</th>
+						<th>Size</th>
+						<th>Quantity</th>
+						<th>Update</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="stock : ${stocks}">
+						<td th:text="${stock.stock_id}"></td>
+						<td th:text="${stock.footwear.name}"></td>
+						<td
+							th:style="'background-image: url(img/'+${stock.footwear.img_name}+');'"></td>
+						<td th:text="${stock.size}"></td>
+						<td th:text="${stock.quantity}"></td>
+
+						<td><a
+							th:href="@{/showFormForUpdateStock/{id}(id=${stock.stock_id})}">Update</a></td>
+						<td><a th:href="@{/deleteStock/{id}(id=${stock.stock_id})}">Delete</a></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+		</div>
+	</section>
+
+</body>
+</html>

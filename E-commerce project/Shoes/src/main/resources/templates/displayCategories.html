@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<h1>Display Categories</h1>
+			<h6>
+				<a href="home">Go Back</a>
+			</h6>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>Footwear Category</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="category : ${footwearCategories}">
+						<td th:text="${category.id}"></td>
+						<td th:text="${category.category_name}"></td>
+						<td><a
+							th:href="@{/showFormForUpdate/{id}(id=${category.id})}">Update</a></td>
+						<td><a th:href="@{/deleteEmployee/{id}(id=${category.id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+</body>
+</html>

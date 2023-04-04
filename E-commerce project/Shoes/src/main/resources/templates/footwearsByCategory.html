@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+
+			<h1>Display Footwears By Category</h1>
+
+			<form action="sendCategory" class="contact-form" method="post">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Category name</label> 
+							
+							<select class="form-control" id="footwear_category"
+						name="category">
+							<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.category_name}"></option>
+							</select>
+							
+						</div>
+					</div>
+
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-primary">
+							<a href="home">Go Back</a>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>Footwear Name</th>
+						<th>Footwear Price</th>
+						<th>Footwear Brand</th>
+						<th>Footwear Category</th>
+						<th>Footwear Group</th>
+						<th>Footwear Image</th>
+						<th>Update</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="footwear : ${footwears}">
+						<td th:text="${footwear.footwear_id}"></td>
+						<td th:text="${footwear.name}"></td>
+						<td th:text="${footwear.price}"></td>
+						<td th:text="${footwear.brand}"></td>
+						<td th:text="${footwear.category.category_name}"></td>
+						<td th:text="${footwear.isMale}"></td>
+						<td th:style="'background-image: url(img/'+${footwear.img_name}+');'" class="product-img"></td>
+						
+						<td><a
+							th:href="@{/showFormForUpdateFootwear/{id}(id=${footwear.footwear_id})}">Update</a></td>
+						<td><a
+							th:href="@{/deleteFootwear/{id}(id=${footwear.footwear_id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+		</div>
+	</section>
+
+
+</body>
+</html>

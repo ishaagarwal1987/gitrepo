@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+
+			<h1>Purchase Report by date</h1>
+
+			<form action="sendDate" class="contact-form" method="post">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Enter Date</label> <input type="date" id="date"
+								name="date" class="form-control">
+						</div>
+					</div>
+
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-primary">
+							<a href="home" role="button">Go Back</a>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>UserName</th>
+						<th>Shipping Address</th>
+						<th>Status</th>
+						<th>SubTotal</th>
+						<th>Discount</th>
+						<th>Delivery Charges</th>
+						<th>Total Amount</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="order : ${orders}">
+						<td th:text="${order.order_id}"></td>
+						<td th:text="${order.user.username}"></td>
+						<td th:text="${order.shippingAddress}"></td>
+						<td th:text="${order.status}"></td>
+						<td th:text="${order.subTotal}"></td>
+						<td th:text="${order.discount}"></td>
+						<td th:text="${order.deliveryCharges}"></td>
+						<td th:text="${order.totalAmount}"></td>
+
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+</body>
+</html>

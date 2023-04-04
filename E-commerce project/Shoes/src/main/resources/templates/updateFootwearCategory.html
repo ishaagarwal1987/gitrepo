@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<h1>Update Footwear Category</h1>
+			<form action="save" class="contact-form" method="post">
+			
+			<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Footwear Category id</label> <input type="hidden" id="email" name="id"
+								class="form-control" th:value="${footwearCategory.id}">
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Footwear Category Name</label> <input type="text" name="category_name"
+								id="subject" class="form-control" th:value="${footwearCategory.category_name}"
+								>
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Update" class="btn btn-primary">
+							
+						</div>
+					</div>
+				</div>
+				<a href="readCategory"> Back to Footwear Category List</a>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

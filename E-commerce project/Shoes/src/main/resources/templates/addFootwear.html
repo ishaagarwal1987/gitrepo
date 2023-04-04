@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+
+			<h1>Add FootWear</h1>
+
+			<form action="submitFootwear" class="contact-form" method="post" th:object="${product}" enctype="multipart/form-data">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear name</label> <input type="text"
+								id="footwear_name" name="name" class="form-control"
+								placeholder="Enter footwear name">
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear Price</label> <input type="text"
+								id="footwear_price" name="price" class="form-control"
+								placeholder="Enter price">
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear Brand</label> <input type="text"
+								id="footwear_brand" name="brand" class="form-control"
+								placeholder="Enter brand">
+						</div>
+					</div>
+
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear Group</label> <br>
+							<input type="radio" id="male" name="isMale" value="m"> <label for="male">Male</label><br>
+							<input type="radio" id="female" name="isMale" value="f"> <label for="female">Female</label><br>
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear category</label>
+							
+							<select class="form-control" id="footwear_category"
+						name="category">
+							<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.category_name}"></option>
+							</select>
+							
+							
+							 
+						</div>
+					</div>
+					
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>FootWear image</label>
+							 <input type="file" id="img_name" name="img_name" class="form-control" accept="image/png, image/jpeg">
+						</div>
+					</div>
+
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Submit" class="btn btn-primary">
+							<a href="home">Go Back</a>
+						</div>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</section>
+
+</body>
+</html>

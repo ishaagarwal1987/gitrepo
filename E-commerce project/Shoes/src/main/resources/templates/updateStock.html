@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<h1>Stock</h1>
+
+			<form action="addStock" class="contact-form" method="post">
+				
+				<div class="row">
+				<input type="hidden" id="stock_id" name="stock_id"
+						class="form-control" th:value="${stock.stock_id}">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Footwear</label> <select id="footwear" name="footwear"
+								class="form-control">
+								<option 
+									th:each="footwear : ${footwears}"
+									th:value="${footwear.footwear_id}" 
+									th:text="${footwear.name}"
+									th:selected="${footwear.name==stock.footwear.name}"></option>
+							</select>
+
+						</div>
+
+						<div class="form-group">
+							<label>Footwear Size</label> <input type="text" id="size"
+								name="size" class="form-control" th:value="${stock.size}">
+						</div>
+
+						<div class="form-group">
+							<label>Footwear Quantity</label> <input type="text" id="quantity"
+								name="quantity" class="form-control"
+								th:value="${stock.quantity}">
+						</div>
+
+					</div>
+
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<input type="submit" value="Update" class="btn btn-primary">
+							<a href="stock">Go Back</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+
+</body>
+</html>

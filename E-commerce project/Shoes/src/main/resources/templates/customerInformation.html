@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+		
+		<h1>Customers Information</h1>
+			<h6>
+				<a href="home">Go Back</a>
+			</h6>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>Username</th>
+						<th>Phone No.</th>
+						<th>Shipping Address</th>
+						<th>Email</th>
+						
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="user : ${customers}">
+						<td th:text="${user.userid}"></td>
+						<td th:text="${user.username}"></td>
+						<td th:text="${user.phone_no}"></td>
+						<td th:text="${user.shipping_address}"></td>
+						<td th:text="${user.email}"></td>
+						
+					</tr>
+				</tbody>
+			</table>
+		
+		</div>
+	</section>
+
+</body>
+</html>

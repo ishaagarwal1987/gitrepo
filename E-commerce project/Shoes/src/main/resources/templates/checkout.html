@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="colorlib-product">
+			<div class="container">
+
+
+
+				<div class="row row-pb-lg">
+					<div class="col-sm-10 offset-md-1">
+						<div class="process-wrap">
+							<div class="process text-center active">
+								<p>
+									<span>01</span>
+								</p>
+								<h3>Shopping Cart</h3>
+							</div>
+							<div class="process text-center active">
+								<p>
+									<span>02</span>
+								</p>
+								<h3>Checkout</h3>
+							</div>
+							<div class="process text-center">
+								<p>
+									<span>03</span>
+								</p>
+								<h3>Order Complete</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+					<form action="placeOrder" method="post" class="colorlib-form">
+
+					<!--  	<input type="hidden" name="user" th:value="${session.user}" />-->
+					
+					 <input
+							type="hidden" name="totalAmount" th:value="${total}" /> <input
+							type="hidden" name="discount" th:value="${discount}" /> <input
+							type="hidden" name="deliveryCharges"
+							th:value="${deliveryCharges}" /> <input type="hidden"
+							name="subTotal" th:value="${subTotal}" />
+
+						<div class="col-lg-8">
+							<h2>Billing Details</h2>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="country">Select Country</label>
+										<div class="form-field">
+											<i class="icon icon-arrow-down3"></i> <select name="people"
+												id="people" class="form-control">
+												<option value="#">Select country</option>
+												<option value="India">India</option>
+												<option value="Alaska">Alaska</option>
+												<option value="China">China</option>
+												<option value="Japan">Japan</option>
+												<option value="Korea">Korea</option>
+												<option value="Philippines">Philippines</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="fname">First Name</label> <input type="text"
+											id="fname" class="form-control"
+											th:value="${session.user.getUsername()}">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="lname">Last Name</label> <input type="text"
+											id="lname" class="form-control" placeholder="Your lastname">
+									</div>
+								</div>
+
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="fname">Address</label> <input type="text"
+											name="shippingAddress" id="address" class="form-control"
+											th:value="${session.user.getShipping_address()}">
+									</div>
+
+								</div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="email">E-mail Address</label> <input type="text"
+											id="email" class="form-control"
+											th:value="${session.user.getEmail()}">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="Phone">Phone Number</label> <input type="text"
+											id="zippostalcode" class="form-control"
+											th:value="${session.user.getPhone_no()}">
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="radio">
+											<label><input type="radio" name="optradio">
+												Create an Account? </label> <label><input type="radio"
+												name="optradio"> Ship to different address</label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="cart-detail">
+										<h2>Cart Total</h2>
+										<ul>
+											<li><span>Subtotal</span> <span
+												th:text="'$'+${subTotal}"></span>
+												<ul>
+													<li th:each="cart : ${cartProducts}"><span
+														th:text="${cart.quantity}+' X ' + ${cart.footwear.name} + ' $' + ${cart.amount}"></span></li>
+
+												</ul></li>
+											<li><span>Shipping</span> <span
+												th:text="'$'+${deliveryCharges}"></span></li>
+											<li><span>Discount</span> <span
+												th:text="'$'+${discount}"></span></li>
+											<li><span>Order Total</span> <span
+												th:text="'$'+${total}"></span></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="col-md-12">
+									<div class="cart-detail">
+										<h2>Payment Method</h2>
+										<div class="form-group">
+											<div class="col-md-12">
+												<div class="radio">
+													<label><input type="radio" name="optradio">
+														Direct Bank Tranfer</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<div class="radio">
+													<label><input type="radio" name="optradio">
+														Check Payment</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<div class="radio">
+													<label><input type="radio" name="optradio">
+														Paypal</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-md-12">
+												<div class="checkbox">
+													<label><input type="checkbox" value=""> I
+														have read and accept the terms and conditions</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<p>
+										<input type="submit" value="Place an order"
+											class="btn btn-primary">
+
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<h1>Display Footwears</h1>
+			<h6>
+				<a href="home">Go Back</a>
+			</h6>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>S.No.</th>
+						<th>Footwear Name</th>
+						<th>Footwear Price</th>
+						<th>Footwear Brand</th>
+						<th>Footwear Category</th>
+						<th>Footwear Group</th>
+						<th>Footwear Image</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="footwear : ${footwears}">
+						<td th:text="${footwear.footwear_id}"></td>
+						<td th:text="${footwear.name}"></td>
+						<td th:text="${footwear.price}"></td>
+						<td th:text="${footwear.brand}"></td>
+						<td th:text="${footwear.category.category_name}"></td>
+						<td th:text="${footwear.isMale}"></td>
+						<td th:style="'background-image: url(img/'+${footwear.img_name}+');'" class="product-img"></td>
+						
+						<td><a
+							th:href="@{/showFormForUpdateFootwear/{id}(id=${footwear.footwear_id})}">Update</a></td>
+						<td><a
+							th:href="@{/deleteFootwear/{id}(id=${footwear.footwear_id})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</section>
+
+</body>
+</html>

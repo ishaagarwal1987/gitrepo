@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		<div class="container">
+			<div class="row row-pb-md">
+				<span th:text="${msg}"></span>
+				
+				<div th:each="footwear : ${footwears}" class="col-lg-3 mb-4 text-center">
+					<div class="product-entry border">
+						<a th:href="@{/footwearDetail/{id}(id=${footwear.footwear_id})}" class="prod-img"> <img th:src="'img/'+${footwear.img_name}"
+							class="img-fluid" alt="Free html5 bootstrap 4 template">
+						</a>
+						<div class="desc">
+							<h2>
+								<a th:href="@{/footwearDetail/{id}(id=${footwear.footwear_id})}"><span th:text="${footwear.category.category_name}"></span> <span th:text="${footwear.name}"></span></a>
+							</h2>
+							<span class="price" th:text="'$'+${footwear.price}"></span>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			
+		</div>
+	</section>
+
+</body>
+</html>

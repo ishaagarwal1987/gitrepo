@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+	
+	
+		<div class="container">
+
+			<h3>Please Login here!</h3>
+			<form action="loginForm" class="contact-form" method="post">
+			
+			  <input type="hidden" id="userpage" name="userpage" th:value="${userpage}">
+			
+				<div class="row">
+				
+				<div class="col-sm-12">
+						<div class="form-group">
+							<label>User Type</label> 
+							<select id="userType" name="userType" class="form-control">
+							<option value="admin">Admin</option>
+							<option value="client">Client</option>
+							</select>
+						</div>
+					</div>
+				
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Username</label> <input type="text" id="username" name="username"
+								class="form-control" placeholder="Enter username">
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Password</label> <input type="text" name="password"
+								id="password" class="form-control"
+								placeholder="Enter password">
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div class="w-100"></div>
+					<div class="col-sm-12">
+					
+					<div class="form-group">
+							<input type="submit" value="Login" class="btn btn-primary">
+							<a th:href="@{/signup/{userType}(userType=${usertype})}">Sign Up</a>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+
+		<div class="container">
+			<h1>
+				Welcome <span th:text="${session.user.getUsername()}"></span>
+			</h1>
+			<div class="row">
+				<div class="col-sm-12 text-left menu-1">
+					<ul>
+						<li class="cart"><a href="logoutClient">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-md-12 pills">
+							<div class="bd-example bd-example-tabs">
+								<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+									<li class="nav-item"><a class="nav-link active"
+										id="pills-description-tab" data-toggle="pill" href="#orders"
+										role="tab" aria-controls="pills-description"
+										aria-expanded="true">View Orders</a></li>
+
+									<li class="nav-item"><a class="nav-link"
+										id="pills-manufacturer-tab" data-toggle="pill"
+										href="#wishList" role="tab" aria-controls="pills-manufacturer"
+										aria-expanded="true">View WishList</a></li>
+
+									<li class="nav-item"><a class="nav-link"
+										id="pills-review-tab" data-toggle="pill"
+										href="#changePassword" role="tab" aria-controls="pills-review"
+										aria-expanded="true">Change Password</a></li>
+
+								</ul>
+
+								<div class="tab-content" id="pills-tabContent">
+									<div class="tab-pane border fade show active" id="orders"
+										role="tabpanel" aria-labelledby="pills-description-tab">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>S.No.</th>
+													<th>Date</th>
+													<th>Amount</th>
+													<th>Status</th>
+
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="order : ${orders}">
+													<td th:text="${order.order_id}"></td>
+													<td th:text="${order.createdOn}"></td>
+													<td th:text="${order.totalAmount}"></td>
+													<td th:text="${order.status}"></td>
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									<div class="tab-pane border fade" id="wishList" role="tabpanel"
+										aria-labelledby="pills-manufacturer-tab">
+										<table class="table">
+											<thead>
+												<tr>
+													<th>S.No.</th>
+													<th>Footwear Name</th>
+													<th>Footwear Price</th>
+													<th>Footwear Brand</th>
+													<th>Footwear Category</th>
+													<th>Footwear Group</th>
+													<th>Footwear Image</th>
+													<th>Remove</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="wishlist : ${wishlists}">
+													<td th:text="${wishlist.wishListId}"></td>
+													<td th:text="${wishlist.footwear.name}"></td>
+													<td th:text="${wishlist.footwear.price}"></td>
+													<td th:text="${wishlist.footwear.brand}"></td>
+													<td th:text="${wishlist.footwear.category.category_name}"></td>
+													<td th:text="${wishlist.footwear.isMale}"></td>
+												
+													<td class="product-img"
+														th:style="'background-image: url(img/'+${wishlist.footwear.img_name}+');'"></td>
+													
+													<td><a
+														th:href="@{/deleteWishList/{id}(id=${wishlist.wishListId})}">Delete</a></td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+									<div class="tab-pane border fade" id="changePassword"
+										role="tabpanel" aria-labelledby="pills-review-tab">
+										<div class="row">
+											<div class="col-md-8">
+
+												<form action="changePassword" method="post">
+													<h4>New Password</h4>
+													<input type="text" id="password" name="password"
+														class="form-control"><br> <input
+														type="submit" value="Submit"
+														class="btn btn-primary btn-addtocart" />
+												</form>
+
+
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</section>
+
+</body>
+</html>
