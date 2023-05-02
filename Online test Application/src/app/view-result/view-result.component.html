@@ -1,0 +1,24 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">View Result</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Exam Date</th>
+                            <th>Marks Obtained</th>
+                        </tr>
+                        <tr *ngFor="let result of results">
+                            <td>{{result.testDate}}</td>
+                            <td>{{result.marks}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+

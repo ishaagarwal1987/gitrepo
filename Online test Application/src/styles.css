@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+.link a{
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.link a:hover{
+    color:blanchedalmond;
+}

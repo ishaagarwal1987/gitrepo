@@ -1,0 +1,66 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Take a Quiz</h5>
+                </div>
+                <div class="card-body">
+                    <ng-container *ngIf="!isQuizCompleted">
+                        <div>
+                            <span>Ques {{currentQuestion+1}}.&nbsp; {{questionsList[currentQuestion].ques}}</span><br />
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" [checked]="radioStatus" name="optedAns" (click)="submitAns(currentQuestion,'Option 1')" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    {{questionsList[currentQuestion].option1}}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" [checked]="radioStatus" name="optedAns" (click)="submitAns(currentQuestion,'Option 2')" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    {{questionsList[currentQuestion].option2}}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" [checked]="radioStatus" name="optedAns" (click)="submitAns(currentQuestion,'Option 3')" id="flexRadioDefault3">
+                                <label class="form-check-label" for="flexRadioDefault3">
+                                    {{questionsList[currentQuestion].option3}}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" [checked]="radioStatus" name="optedAns" (click)="submitAns(currentQuestion,'Option 4')" id="flexRadioDefault4">
+                                <label class="form-check-label" for="flexRadioDefault4">
+                                    {{questionsList[currentQuestion].option4}}
+                                </label>
+                            </div>
+                            <br>
+                        </div>
+                   
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" (click)="previousQuestion()" [disabled]="currentQuestion===0"> << </button>
+                            <button class="btn btn-primary" (click)="resetQuiz()">Reset Quiz</button>
+                            <button class="btn btn-primary" (click)="nextQuestion()"> >> </button>
+                        </div>
+                    </ng-container>
+                        <ng-container *ngIf="isQuizCompleted">
+                            <div class="row">
+
+                                <div class="col-4"><img class="img-fluid col-sm-12 mr-auto" src="https://icon-library.com/images/celebration-icon-png/celebration-icon-png-7.jpg" alt=""></div>
+                                <div class="col-8"><h4>Congratulations!! <br>You have completed the quiz. <br>Below is your result:</h4>
+                                    <p>Total questions : {{questionsList.length}}</p>
+                                    <p>Total Correct Answered : {{correctAns}} </p>
+                                    <p>Total Wrong Answered : {{inCorrectAns}} </p>
+                                    <p>Your Score : {{marks}} marks out of {{totalMarks}}</p></div>
+                          
+                                
+                            </div>
+                        </ng-container>
+                   {{msg}}
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>

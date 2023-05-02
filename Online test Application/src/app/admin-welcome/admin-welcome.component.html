@@ -1,0 +1,32 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">View Questions</div>
+                <div class="card-body">
+                    <table class="table-stripped">
+                        <tr>
+                            <th>Question</th>
+                            <th>Option 1</th>
+                            <th>Option 2</th>
+                            <th>Option 3</th>
+                            <th>Option 4</th>
+                            <th>Correct Answer</th>
+                        </tr>
+                        <tr *ngFor="let ques of questions">
+                            <td>{{ques.ques}}</td>
+                            <td>{{ques.option1}}</td>
+                            <td>{{ques.option2}}</td>
+                            <td>{{ques.option3}}</td>
+                            <td>{{ques.option4}}</td>
+                            <td>{{ques.ans}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+
