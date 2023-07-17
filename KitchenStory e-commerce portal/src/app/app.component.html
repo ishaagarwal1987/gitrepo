@@ -1,0 +1,92 @@
+<!-- Main Navbar -->
+<div *ngIf="isNavbarVisiableMain">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Kitchen</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="viewProducts">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register">Register</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="pname" [(ngModel)]="pname" (ngModelChange)="searchThis()" type="search" placeholder="Search">
+        <button class="btn btn-light my-2 my-sm-0" (click)="searchThis()" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</div>
+
+<!-- Admin Navbar-->
+<div *ngIf="isNavbarVisiableAdmin">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">KitchenStory</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="products">Products</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="orders">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+      
+    </div>
+  </nav>
+</div>
+<!--Client Navbar-->
+
+<div *ngIf="isNavbarVisiableClient">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">KitchenStory</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="viewProducts">Products</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="orders"> My Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="cart"> My Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="changePass"> Change Password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+      
+    </div>
+  </nav>
+</div>
+
+
+
+<router-outlet></router-outlet>

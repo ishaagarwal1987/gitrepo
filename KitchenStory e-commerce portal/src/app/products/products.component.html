@@ -1,0 +1,151 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between" ><h5>All Products</h5>
+                        <div>
+                            <button type="button" (click)="openPopup()" class="btn-sm btn-primary">
+                                Add Product
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Product name</th>
+                            <th>Product Description</th>
+                            <th>Price</th>
+                            <th>Product Image</th>
+                            <th>Operations</th>
+                        </tr>
+                        <tr *ngFor="let product of products">
+                            <td>{{product.productId}}</td>
+                            <td>{{product.productName}}</td>
+                            <td>{{product.productDescription}}</td>
+                            <td>${{product.cost}}</td>
+                            <td>{{product.imageName}}</td>
+                            <td><button class="btn btn-primary" (click)="openModifyPopup(product.productId)">Modify</button></td>
+                            <td><button class="btn btn-warning" (click)="deleteProduct(product.productId)">Delete</button></td>
+                        </tr>
+                    </table>
+
+                    <!--Add Modal start-->
+
+                    <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Food Item</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="prodForm" (ngSubmit)="addProduct()">
+
+                                        <div class="form-group row">
+                                            <label for="inputpname" class="col-sm-3 col-form-label">Product Name</label>
+                                            <div class="col-sm-9">
+                                              <input type="text" formControlName="productName" class="form-control" id="inputpname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPdesc" class="col-sm-3 col-form-label">Product Description</label>
+                                            <div class="col-sm-9">
+                                              <input type="text" formControlName="productDescription" class="form-control" id="inputPdesc">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputcost" class="col-sm-3 col-form-label">Product Price</label>
+                                            <div class="col-sm-9">
+                                              <input type="text" formControlName="cost" class="form-control" id="inputcost">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputimage" class="col-sm-3 col-form-label">Product Image</label>
+                                            <div class="col-sm-9">
+                                              <input type="file" formControlName="imageName" (change)="onFileSelected($event)" class="form-control" id="inputimage">
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" (click)="closePopup()">
+                                        Close
+                                    </button>
+                                    <input type="submit" value="Add Product" (click)="addProduct()" class="btn btn-primary" />
+                    <div [innerHTML]="msg"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Add Modal end-->
+                     <!--Modify Modal start-->
+
+                    <div class="modal " tabindex="-1" role="dialog" [ngStyle]="{'display':modifyDisplayStyle}">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Update Food Item</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="prodForm" (ngSubmit)="addProduct()">
+
+                                        <div class="mb-3">
+                                            <label for="inputpname" class="form-label">Product Name</label>
+                                            <input type="text" formControlName="productName" class="form-control"
+                                                id="inputpname">
+                                        </div>
+
+                                        <div class="mb-3 ">
+                                            <label for="inputPdesc" class="form-label">Product
+                                                Description</label>
+
+                                            <input type="text" formControlName="productDescription"
+                                                class="form-control" id="inputPdesc">
+
+                                        </div>
+
+                                        <div class="mb-3 ">
+                                            <label for="inputcost" class="form-label">Product Price</label>
+
+                                            <input type="text" formControlName="cost" class="form-control"
+                                                id="inputcost">
+
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="inputimage" class="form-label">Product
+                                                Image</label>
+
+                                            <input type="file" (change)="onFileSelected($event)" formControlName="image" class="form-control"
+                                                id="inputimage">
+
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    
+                                    <input type="submit" value="Update" (click)="updateProduct()" class="btn btn-primary" />
+                                    <button type="button" class="btn btn-warning" (click)="closeModifyPopup()">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Modify Modal end-->
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>

@@ -1,0 +1,132 @@
+<div class="container-fluid p-2">
+    <div class="row row-pb-lg">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Cart</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Product</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                        <tr *ngFor="let cart of carts">
+                            <td>{{cart.product.imageName}}</td>
+                            <td>{{cart.product.productName}}</td>
+                            <td>{{cart.product.cost}}</td>
+                            <td>{{cart.quantity}}</td>
+                            <td>{{cart.amount}}</td>
+                            <td><button class="btn btn-warning" (click)="deleteFromCart(cart.cartid)">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row m-3">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-7"></div>
+        <div class="col-sm-3 text-center">
+            <div class="total p-2" style="background-color: lavender;">
+                <div class="sub" >
+                    <p><span>Subtotal : </span> <span>${{subtotal}}</span></p>
+                    <p><span>Delivery : </span> <span>${{deliveryCharges}}</span></p>
+                    <p><span>Discount : </span> <span>${{discount}}</span></p>
+                </div>
+                <div class="grand-total">
+                    <p><span><strong>Total : </strong></span> <span>${{total}}</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row p-4 rounded" style="background-color: lavender;">
+        <div class="col-lg-8">
+            <form method="post" class="colorlib-form">
+                <h2>Billing Details</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="fname">Address</label>
+                            <input type="text" id="address" [(ngModel)]="address" name="address" class="form-control" placeholder="Enter Your Address">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="companyname">Town/City</label>
+                            <input type="text" id="towncity" class="form-control" placeholder="Town or City">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="stateprovince">State/Province</label>
+                            <input type="text" id="fname" class="form-control" placeholder="State Province">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="lname">Zip/Postal Code</label>
+                            <input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-detail">
+                        <h2>Payment Method</h2>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Direct Bank Tranfer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Check Payment</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Paypal</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value=""> I have read and accept the terms and
+                                        conditions</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p><a href="#" class="btn btn-primary" (click)="placeOrder()">Place an order</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
