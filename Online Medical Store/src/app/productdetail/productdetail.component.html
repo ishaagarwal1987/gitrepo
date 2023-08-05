@@ -1,0 +1,40 @@
+<div class="container p-3">
+    <div class="row row-pb-lg product-detail-wrap">
+        <div class="col-sm-8">
+            <div class="owl-carousel">
+                <div class="item">
+                    <div class="product-entry border">
+                        <a href="#" class="prod-img">
+                            <img src='http://localhost:8080/productimages/{{productObj.image}}' class="img-fluid" alt="Free html5 bootstrap 4 template">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-sm-4">
+                <div class="product-desc">
+                    <h3>{{productObj.productname}}</h3>
+                    <p class="price">
+                        <span>${{productObj.cost}}</span> 
+                        
+                    </p>
+                    <p>Product Brand : {{productObj.brand}}
+                        <br>
+                        Product Category : {{productObj.category.categoryname}}
+                        <br>
+                        <label class="col-form-label">Quantity</label> <input type="text" [(ngModel)]="quantity" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p class="addtocart"><a routerLink="/viewProducts" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Continue Shopping</a></p>
+                              <p class="addtocart"><a (click)="addCart()" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+                              <p class="addtocart"><a (click)="goToCart()" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Checkout</a></p> 
+                          
+                            </div>
+                      </div>
+            </div>
+
+        
+    </div>
+</div>

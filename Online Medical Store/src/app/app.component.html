@@ -1,0 +1,61 @@
+<!-- Main Navbar -->
+<div *ngIf="isNavbarVisiableMain">
+  <nav class="navbar navbar-expand-lg toolbar">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" routerLink="/" style="cursor: pointer;">Medicare</a>
+      <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link" routerLink="about"><i class="fa-solid fa-circle-info"></i> About Us</a>
+          <a class="nav-link" routerLink="contact"><i class="fa-solid fa-id-card"></i> Contact</a>
+          <a class="nav-link" routerLink="viewProducts"><i class="fa-solid fa-pills"></i> Products</a>
+          <a class="nav-link" routerLink="login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+          <a class="nav-link" routerLink="register"><i class="fa-solid fa-user-plus"></i> Register</a>
+
+        </div>
+        <form class="d-flex" role="search">
+          <div class="search">
+            <i class="fa fa-search"></i>
+            <input name="pname" [(ngModel)]="pname" (ngModelChange)="searchThis()" type="search" class="form-control" placeholder="Search here">
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</div>
+<!--Admin Navbar-->
+<div *ngIf="isNavbarVisiableAdmin">
+  <app-admin-dashboard></app-admin-dashboard>
+
+</div>
+<!--Client Navbar-->
+<div *ngIf="isNavbarVisiableClient">
+  <app-client-dashboard></app-client-dashboard>
+
+</div>
+
+
+<router-outlet></router-outlet>
+
+
+<!-- Footer Section -->
+<footer>
+  <div class="socialicons">
+    <!-- Social Media Icons -->
+    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+    <!-- Add more social media icons as needed -->
+
+    <!-- Additional Footer Links -->
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms of Service</a> |
+    <a href="#">Contact Us</a>
+  </div>
+</footer>

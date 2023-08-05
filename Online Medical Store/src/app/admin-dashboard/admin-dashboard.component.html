@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg toolbar">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" routerLink="/" style="cursor: pointer;">Medicare</a>
+    <button class="navbar-toggler bg-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto text-white">
+        <a class="nav-link" routerLink="categories"><i class="fa-solid fa-bars"></i> Categories</a>
+        <a class="nav-link" routerLink="products"><i class="fa-solid fa-pills"></i> Products</a>
+        <a class="nav-link" routerLink="users"><i class="fa-solid fa-users"></i> Users</a>
+        <a class="nav-link" routerLink="order"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+        <a class="nav-link" routerLink="changepassword"><i class="fa-solid fa-lock"></i> Change Password</a>
+        <a class="nav-link" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        <div class="nav-link"> Welcome {{user.username}} &nbsp;<i class="fa-solid fa-user"></i></div>
+      </div>
+
+    </div>
+  </div>
+</nav>

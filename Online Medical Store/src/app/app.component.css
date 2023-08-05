@@ -1,0 +1,11 @@
+.footer{
+    background-color:#6f42c1;
+    padding: 20px;
+}
+.footer a {
+    color: whitesmoke;
+}
+#navbarNavAltMarkup{
+    align-content: center;
+    align-items: center;
+}

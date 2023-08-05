@@ -1,0 +1,107 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header"><h5>Cart</h5></div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Id</th>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Operations</th>
+                        </tr>
+                        <tr *ngFor="let cart of carts">
+                            <td>{{cart.cartid}}</td>
+                            <td>{{cart.product.image}}</td>
+                            <td>{{cart.product.productname}}</td>
+                            <td><input type="text" class="form-control" (change)="changeFn($event,cart)"
+                                    value="{{cart.quantity}}"></td>
+                            <td>{{cart.product.cost}}</td>
+                            <td>${{cart.amount}}</td>
+                            <td>
+                                <a class="icon" (click)="refreshCart(cart)" data-toggle="tooltip" title="refresh"><i
+                                        class="fa-solid fa-arrows-rotate"></i></a>
+                                &nbsp;
+
+                                <a class="icon" (click)="remove(cart.cartid)" data-toggle="tooltip"
+                                    title="Delete Product from Cart"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-7"></div>
+                <div class="col-5 total_block p-3 mt-3">
+                    Sub-Total : ${{subtotal}}
+                    <br>Discount : ${{discount}}
+                    <br>Delivery Charges : ${{deliveryCharge}}
+                    <hr>
+                    Grand Total : ${{grandTotal}}
+                    <hr>
+                </div>
+            </div>
+            <div class="row total_block mt-3 p-3">
+
+                <div class="col-7">
+                    <h3>Shipping Details</h3>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{user.username}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" [(ngModel)]="address" name="address" value="{{user.address}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Phone No.</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" value="{{user.phoneNo}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <h3>Card Details</h3>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Name on the card</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Card Number</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Expity Date</label>
+                        <div class="col-sm-7">
+                            <input type="date" class="form-control" value="{{user.phoneNo}}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">CVV</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" value="{{user.phoneNo}}">
+                        </div>
+                    </div>
+
+                    <div style="display: flex;"><button class="btn" (click)="placeOrder()">Place Order</button></div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

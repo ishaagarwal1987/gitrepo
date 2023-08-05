@@ -1,0 +1,61 @@
+<div class="container-fluid mt-5 mb-5">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8"><div class="card">
+      <div class="card-header"><h5>Categories</h5></div>
+      <div class="card-body">
+  
+        <table class="table">
+          <tr>
+            <td>Enter Category Name</td>
+            <td><input type="text" class="form-control" [(ngModel)]="categoryName" name="categoryName"></td>
+            <td><button class="btn btn-success" (click)="add()" [disabled]="!categoryName">Add Category</button></td>
+          </tr>
+          <tr>
+            <th>Id</th>
+            <th>Category Name</th>
+            <th>Operations</th>
+          </tr>
+          <tr *ngFor="let category of categories">
+            <td>{{category.categoryid}}</td>
+            <td>{{category.categoryname}}</td>
+            <td><a class="icon" (click)="openModifyPopup(category.categoryid,category.categoryname)" data-toggle="tooltip"
+                title="Edit Category"><i class="fa-solid fa-pen"></i></a>&nbsp;
+              <a class="icon" (click)="remove(category.categoryid)" data-toggle="tooltip" title="Delete Category"><i
+                  class="fa-solid fa-trash"></i></a> 
+            </td>
+          </tr>
+        </table>
+        <!--Update Modal start-->
+        <div class="modal" tabindex="-1" [ngStyle]="{'display':displayStyle}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Update Category</h5>
+                <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" [(ngModel)]="categoryname" name="categoryname"
+                      id="staticEmail">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="edit()">Update Category</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Update Modal end-->
+  
+  
+        </div>
+  
+      </div></div>
+    <div class="col-2"></div>
+  </div>
+  
+  </div>

@@ -1,0 +1,244 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>All Products</h5>
+                        <div>
+                            <button type="button" (click)="openPopup()" class="btn-sm btn-primary">
+                                Add Product
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Product Image</th>
+                            <th>Id</th>
+                            <th>Product name</th>
+                            <th>Product Brand</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Product Active/Deactive</th>
+                            <th>Operations</th>
+                        </tr>
+                        <tr *ngFor="let product of products">
+                            <td><img src='http://localhost:8080/productimages/{{product.image}}' alt="{{product.productname}}" width="70" height="70" border="3" align="center"></td>
+                            <td>{{product.pid}}</td>
+                            <td>{{product.productname}}</td>
+                            <td>{{product.brand}}</td>
+                            <td>{{product.category.categoryname}}</td>
+                            <td>${{product.cost}}</td>
+                            <td>{{product.quantity}}</td>
+
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="flexSwitchCheckChecked" [(ngModel)]="product.status" (change)="onCheckboxChange($event,product)">
+
+                                </div>
+
+                            </td>
+                            <td>
+                                <a class="icon"
+                                    (click)="openModifyPopup(product.pid)"><i class="fa-solid fa-pen"></i></a>&nbsp;
+                                <a
+                                    class="icon" (click)="deleteProduct(product.pid)"><i
+                                    class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!--Add Modal start-->
+
+                    <div class="modal modal-fullscreen" tabindex="-1" role="dialog"
+                        [ngStyle]="{'display':displayStyle}">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Product</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="prodForm" (ngSubmit)="addProduct()">
+
+                                        <div class="form-group row">
+                                            <label for="inputpname" class="col-sm-3 col-form-label">Product Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="productname" class="form-control"
+                                                    id="inputpname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPdesc" class="col-sm-3 col-form-label">Product
+                                                Brand</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="brand" class="form-control"
+                                                    id="inputPdesc">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputcost" class="col-sm-3 col-form-label">Product Price</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="cost" class="form-control"
+                                                    id="inputcost">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputquantity" class="col-sm-3 col-form-label">Product
+                                                Quantity</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="quantity" class="form-control"
+                                                    id="inputquantity">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputcategory" class="col-sm-3 col-form-label">Product
+                                                Category</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" formControlName="category">
+                                                    <option disabled>Choose Category</option>
+                                                    <option *ngFor="let category of categories" [ngValue]="category">
+                                                        {{category.categoryname}}</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputimage" class="col-sm-3 col-form-label">Product
+                                                Image</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" formControlName="image"
+                                                    (change)="onFileSelected($event)" class="form-control"
+                                                    id="inputimage">
+                                            </div>
+                                        </div>
+
+                                        <!-- Default checked -->
+
+                                        <div class="form-group row">
+                                            <label for="flexCheckChecked" class="col-sm-3 col-form-label">Status
+                                                Active/Deactive</label>
+                                            <div class="col-sm-9">
+                                                <input class="form-control" formControlName="status" type="checkbox"
+                                                    value="1" checked id="flexCheckChecked" checked>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" (click)="closePopup()">
+                                        Close
+                                    </button>
+                                    <input type="submit" value="Add Product" [disabled]="prodForm.invalid"
+                                        (click)="addProduct()" class="btn btn-primary" />
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Add Modal end-->
+                    <!--Modify Modal start-->
+                    <div class="modal modal-fullscreen" tabindex="-1" role="dialog"
+                    [ngStyle]="{'display':modifyDisplayStyle}">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Product</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="prodForm" (ngSubmit)="updateProduct()">
+
+                                    <div class="form-group row">
+                                        <label for="inputpname" class="col-sm-3 col-form-label">Product Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="productname" class="form-control"
+                                                id="inputpname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPdesc" class="col-sm-3 col-form-label">Product
+                                            Brand</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="brand" class="form-control"
+                                                id="inputPdesc">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputcost" class="col-sm-3 col-form-label">Product Price</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="cost" class="form-control"
+                                                id="inputcost">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputquantity" class="col-sm-3 col-form-label">Product
+                                            Quantity</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="quantity" class="form-control"
+                                                id="inputquantity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputcategory" class="col-sm-3 col-form-label">Product
+                                            Category</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" formControlName="category">
+                                                <option disabled>Choose Category</option>
+                                                <option *ngFor="let category of categories" [ngValue]="category">
+                                                    {{category.categoryname}}</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputimage" class="col-sm-3 col-form-label">Product
+                                            Image</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" formControlName="image"
+                                                (change)="onFileSelected($event)" class="form-control"
+                                                id="inputimage">
+                                        </div>
+                                    </div>
+
+                                    <!-- Default checked -->
+
+                                    <div class="form-group row">
+                                        <label for="flexCheckChecked" class="col-sm-3 col-form-label">Status
+                                            Active/Deactive</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" formControlName="status" type="checkbox"
+                                                value="1" checked id="flexCheckChecked" checked>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" (click)="closeModifyPopup()">
+                                    Close
+                                </button>
+                                <input type="submit" value="Update Product" [disabled]="prodForm.invalid"
+                                    (click)="updateProduct()" class="btn btn-primary" />
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--Modify Modal end-->
+
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
