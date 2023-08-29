@@ -1,0 +1,55 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col-1"></div>
+       <div class="col-10">
+            <div class="card">
+                <div class="card-header"><h5>Booking History</h5></div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>Show</th>
+                            <th>No. of Tickets</th>
+                            <th>Amount</th>
+                            <th>View</th>
+                        </tr>
+                        <tr *ngFor="let booking of bookings,let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{booking.timeStamp}}</td>
+                            <td>{{booking.show.startTime}} - {{booking.show.endTime}}</td>
+                            <td>{{booking.numberOfSeats}}</td>
+                            <td>{{booking.amount}}</td>
+                            <td><a (click)="viewdetail(booking)"><i class="fa-regular fa-eye"></i></a></td>
+                        </tr>
+                    </table>
+                    <!--View Modal start-->
+      <div class="modal" tabindex="-1" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Seat Number</h5>
+              <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Seat Number</label>
+                <div class="col-sm-9">
+                  <span *ngFor="let seat of seats">{{seat.cinemaSeat.seatNumber}} , </span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--View Modal end-->
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container p-3">
+    <div class="row row-pb-lg product-detail-wrap">
+        <div class="col-sm-4">
+            <div>
+                <a href="#">
+                    <img src='http://localhost:8080/movieImages/{{movieObj.image}}' class="img-fluid"
+                        alt="{{movieObj.moviename}}" width="300" height="300">
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="product-desc">
+                <h3>{{movieObj.moviename}}</h3>
+                <p class="price">
+                    <span>{{movieObj.certification}}</span><br>
+                    <span>{{movieObj.language}}</span>
+                </p>
+                <p><strong>About Movie</strong> : {{movieObj.description}}
+                    <br>
+                    <strong>Genre</strong> : {{movieObj.genre.genrename}}
+                    <br>
+                    <strong>Duration</strong> : {{convertMinuteToHour(movieObj.duration)}}
+                </p>
+                <hr>
+                <h5>For Ticket Booking</h5>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Choose Show Date</label>
+                    <div class="col-sm-5">
+                        <input type="date" [(ngModel)]="showdate" name="showdate" class="form-control"
+                            placeholder="Enter Show Date">
+                    </div>
+                    <a class="btn btn-primary" (click)="getShows()">Get Shows</a>
+                </div>
+                
+                <h5>Available Shows are:</h5>
+                <div *ngFor="let show of shows" style="display: inline;">
+                    <a class="btn btn-outline-primary" style="cursor: pointer;" (click)="bookTickets(show)">{{show.startTime}} - {{show.endTime}}</a> &nbsp;
+                </div>
+
+                <!--<a routerLink="bookTickets" class="btn-lg btn-primary" (click)="bookTickets()">Book Tickets</a>-->
+            </div>
+        </div>
+    </div>
+</div>

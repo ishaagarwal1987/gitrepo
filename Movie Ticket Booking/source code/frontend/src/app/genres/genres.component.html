@@ -1,0 +1,54 @@
+<div class="container-fluid p-3">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h5>Genres</h5>
+      <table class="table table-striped">
+        <tr>
+          <td>Genre Name</td>
+          <td><input type="text" class="form-control" [(ngModel)]="genrename" name="genrename"
+              placeholder="Enter genre"></td>
+          <td><button class="btn btn-primary" (click)="add()" [disabled]="!genrename">Add Genre</button></td>
+        </tr>
+        <tr>
+          <th>No.</th>
+          <th>Genres</th>
+          <th>Operation</th>
+        </tr>
+        <tr *ngFor="let genre of genres, let i=index">
+          <td>{{i+1}}</td>
+          <td>{{genre.genrename}}</td>
+          <td><a class="icon" (click)="openModifyPopup(genre.genreid,genre.genrename)" data-toggle="tooltip"
+              title="Edit Genre"><i class="fa-solid fa-pen"></i></a>&nbsp;
+            <a class="icon" (click)="remove(genre.genreid)" data-toggle="tooltip" title="Delete Genre"><i
+                class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
+      </table>
+      <!--Update Modal start-->
+      <div class="modal" tabindex="-1" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Genre</h5>
+              <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Genre Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" [(ngModel)]="genrename" name="genrename">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="edit()">Update Genre</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Update Modal end-->
+      </div>
+    </div>
+  </div>
+</div>

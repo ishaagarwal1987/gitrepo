@@ -1,0 +1,16 @@
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="movie-list-wrapper">
+            <div class="movie-list">
+                <div class="movie-list-item" *ngFor="let movie of movies">
+                    <a (click)="moviedetail(movie)"><img class="movie-list-item-img" src='http://localhost:8080/movieImages/{{movie.image}}'
+                        alt="{{movie.moviename}}"></a>
+                    <div class="mt-2">
+                        <h6><a (click)="moviedetail(movie)">{{movie.moviename}}</a></h6>
+                        {{movie.language}}<br>{{movie.certification}}<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

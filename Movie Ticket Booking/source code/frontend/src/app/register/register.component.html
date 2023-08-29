@@ -1,0 +1,35 @@
+<div class="container-fluid p-3 grad">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="icon"><i class="fa-solid fa-user-plus"></i>
+                <br>Sign Up</div>
+                <form class="form-floating" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" formControlName="username" class="form-control" id="name" placeholder="Enter name" name="name">
+                        <label for="name">Name</label>
+                    </div>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <label for="email">Email</label>
+                    </div>
+
+                    <div class="form-floating mt-3 mb-3">
+                        <input type="password" formControlName="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                        
+                        <label for="pwd">Password</label>
+                    </div>
+
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" formControlName="phoneNo" class="form-control" id="phoneNo" placeholder="Enter Phone No." name="phoneNo">
+                        <label for="phoneNo">Phone No.</label>
+                    </div>
+
+                    <button class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+                </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

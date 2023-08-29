@@ -1,0 +1,111 @@
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+
+            <table class="table">
+                
+
+                <tr>
+                    <th>No.</th>
+                    <th>Image</th>
+                    <th>Movie</th>
+                    <th>Show Date</th>
+                    <th>Show Start Time</th>
+                    <th>Show End Time</th>
+                    <th>Opeartions</th>
+                </tr>
+                <tr>
+                    <td>Shows</td>
+                    <td></td>
+                    <td>
+                        <select class="form-control" [(ngModel)]="movie" name="movie">
+                            <option disabled>Choose Movie</option>
+                            <option *ngFor="let movie of movies" [ngValue]="movie">
+                                {{movie.moviename}}</option>
+
+                        </select>
+                    </td>
+                    <td><input type="date" [(ngModel)]="showdate" name="showdate" class="form-control"
+                            placeholder="Enter Show Date"></td>
+                    <td><input type="time" [(ngModel)]="startTime" name="startTime" class="form-control"
+                            placeholder="Enter Show Start Time"></td>
+                    <td><input type="time" [(ngModel)]="endTime" name="endTime" class="form-control"
+                            placeholder="Enter Show End Time"></td>
+                    <td><button class="btn btn-primary" (click)="addShow()"> Add Show</button></td>
+
+                </tr>
+
+                <tr *ngFor="let show of shows, let i=index">
+                    <td>{{i+1}}</td>
+                    <td><img src='http://localhost:8080/movieImages/{{show.movie.image}}' alt="{{show.movie.moviename}}"
+                            width="70" height="70" border="3" align="center"></td>
+                            <td>{{show.movie.moviename}}</td>
+                    <td>{{show.showdate}}</td>
+                    <td>{{show.startTime}}</td>
+                    <td>{{show.endTime}}</td>
+                    <td><a class="icon" (click)="openModifyPopup(show)"><i class="fa-solid fa-pen"></i></a>&nbsp;
+                        <a class="icon" (click)="deleteShow(show.showid)"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            </table>
+
+            <!--Update Modal start-->
+      <div class="modal" tabindex="-1" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Show</h5>
+              <button type="button" class="btn-close" (click)="closePopup()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Show Date</label>
+                <div class="col-sm-9">
+                    <input type="date" [(ngModel)]="showdate" name="showdate" class="form-control"
+                    placeholder="Enter Show Date">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Show Start Time</label>
+                <div class="col-sm-9">
+                    <input type="time" [(ngModel)]="startTime" name="startTime" class="form-control"
+                            placeholder="Enter Show Start Time">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Show End Time</label>
+                <div class="col-sm-9">
+                    <input type="time" [(ngModel)]="endTime" name="endTime" class="form-control"
+                            placeholder="Enter Show End Time">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Movie</label>
+                <div class="col-sm-9">
+                    <select class="form-control" [(ngModel)]="movie" name="movie">
+                        <option disabled>Choose Movie</option>
+                        <option *ngFor="let movie of movies" [ngValue]="movie">
+                            {{movie.moviename}}</option>
+
+                    </select>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closePopup()">Close</button>
+                <button type="button" class="btn btn-primary" (click)="updateShow()">Update Show</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Update Modal end-->
+
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

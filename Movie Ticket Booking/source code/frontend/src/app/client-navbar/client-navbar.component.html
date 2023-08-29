@@ -1,0 +1,28 @@
+<nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/" style="cursor: pointer;">NMS Cinemas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          
+          <a class="nav-link" routerLink="viewMovies"><i class="fa-solid fa-film"></i> Movies</a>
+          <a class="nav-link" routerLink="history"><i class="fa-solid fa-film"></i> Booking History</a>
+          <a class="nav-link" (click)="logout()" style="cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            <div class="nav-link"> Welcome {{user.username}} &nbsp;<i class="fa-solid fa-user"></i></div>
+
+        </div>
+        <form class="d-flex" role="search">
+          <div class="search">
+            <i class="fa fa-search"></i>
+            <input name="pname" type="search" class="form-control" placeholder="Search here">
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  

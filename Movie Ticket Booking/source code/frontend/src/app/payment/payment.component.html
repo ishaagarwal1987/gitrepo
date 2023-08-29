@@ -1,0 +1,43 @@
+<div class="container mt-4 mb-4">
+  <div class="row box">
+    <div class="col-4">
+      <img src='http://localhost:8080/movieImages/{{movieObj.image}}' class="" width="300" height="300"
+        alt="{{movieObj.moviename}}">
+    </div>
+    <div class="col-8">
+      <h5>{{movieObj.moviename}}</h5>
+      <p>
+        <span>{{movieObj.certification}}</span><br>
+        <span>{{movieObj.language}}</span><br>
+        <strong>Genre : </strong> {{movieObj.genre.genrename}}<br>
+        <span><strong>Show Date : </strong> {{booking.show.showdate}}</span><br>
+        <span><strong>Show Time : </strong> {{booking.show.startTime}} - {{booking.show.endTime}}</span><br>
+        <span><strong>No. of Seats : </strong> {{booking.numberOfSeats}}</span><br>
+        <strong>Seat Number : </strong>( <span *ngFor="let seat of storedSeat">{{seat.seatNumber}} , </span>)<br>
+        <span><strong>Total Amount : </strong>{{booking.amount}} Rs</span><br>
+      </p>
+    </div>
+  </div>
+  <br>
+  <div class="row box">
+    <h5>Payment Details</h5>
+    <table class="table">
+      <tr>
+        <td>Name on the card</td>
+        <td><input type="text" class="form-control" placeholder="Name on the Card"></td>
+      </tr>
+      <tr>
+        <td>CVV number</td>
+        <td><input type="text" class="form-control" placeholder="CVV number"></td>
+      </tr>
+      <tr>
+        <td>Expiry Date</td>
+        <td><input type="date" class="form-control" placeholder="Expiry Date"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><a (click)="book()" class="btn btn-primary">Pay</a></td>
+      </tr>
+    </table>
+  </div>
+</div>

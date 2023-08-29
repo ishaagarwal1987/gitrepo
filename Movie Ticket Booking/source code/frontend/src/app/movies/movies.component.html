@@ -1,0 +1,222 @@
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+       <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>All Movies</h5>
+                        <div>
+                            <button type="button" (click)="openPopup()" class="btn-sm btn-primary">
+                                Add Movie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th>Movie Image</th>
+                            <th>Movie name</th>
+                            <th>Movie Description</th>
+                            <th>Genre</th>
+                            <th>Language</th>
+                            <th>Certification</th>
+                            <th>Movie Duration</th>
+                            <th>Operations</th>
+                        </tr>
+                        <tr *ngFor="let movie of movies, let i=index">
+                            <td>{{i+1}}</td>
+                            <td><img src='http://localhost:8080/movieImages/{{movie.image}}' alt="{{movie.moviename}}" width="70" height="70" border="3" align="center"></td>
+                            <td>{{movie.moviename}}</td>
+                            <td>{{movie.description}}</td>
+                            <td>{{movie.genre.genrename}}</td>
+                            <td>{{movie.language}}</td>
+                            <td>{{movie.certification}}</td>
+                            <td>{{movie.duration}} hours</td>
+                            <td>
+                                <a class="icon" (click)="openModifyPopup(movie.movieid)"><i class="fa-solid fa-pen"></i></a>&nbsp;
+                                <a class="icon" (click)="deleteMovie(movie.movieid)"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!--Add Modal start-->
+
+                    <div class="modal modal-fullscreen" tabindex="-1" role="dialog"
+                        [ngStyle]="{'display':displayStyle}">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Add Movie</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="prodForm" (ngSubmit)="addMovie()">
+
+                                        <div class="form-group row">
+                                            <label for="inputpname" class="col-sm-3 col-form-label">Movie Name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="moviename" class="form-control"
+                                                    id="inputpname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPdesc" class="col-sm-3 col-form-label">Movie
+                                                Certification</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="certification" class="form-control"
+                                                    id="inputPdesc">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputcost" class="col-sm-3 col-form-label">Movie Description</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="description" class="form-control"
+                                                    id="inputcost">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputquantity" class="col-sm-3 col-form-label">Movie
+                                                Language</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" formControlName="language" class="form-control"
+                                                    id="inputquantity">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputquantity" class="col-sm-3 col-form-label">Movie
+                                                Duration</label>
+                                            <div class="col-sm-9">
+                                                <input type="time" formControlName="duration" class="form-control"
+                                                    id="inputquantity">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputcategory" class="col-sm-3 col-form-label">Genres</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" formControlName="genre">
+                                                    <option disabled>Choose Genre</option>
+                                                    <option *ngFor="let genre of genres" [ngValue]="genre">
+                                                        {{genre.genrename}}</option>
+    
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputimage" class="col-sm-3 col-form-label">Movie
+                                                Image</label>
+                                            <div class="col-sm-9">
+                                                <input type="file" formControlName="image"
+                                                    (change)="onFileSelected($event)" class="form-control"
+                                                    id="inputimage">
+                                            </div>
+                                        </div>
+
+                               
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" (click)="closePopup()">
+                                        Close
+                                    </button>
+                                    <input type="submit" value="Add Movie" [disabled]="prodForm.invalid"
+                                        (click)="addMovie()" class="btn btn-primary" />
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Add Modal end-->
+                    <!--Modify Modal start-->
+                    <div class="modal modal-fullscreen" tabindex="-1" role="dialog"
+                    [ngStyle]="{'display':modifyDisplayStyle}">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Update Movie</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="prodForm" (ngSubmit)="updateMovie()">
+
+                                    <div class="form-group row">
+                                        <label for="inputpname" class="col-sm-3 col-form-label">Movie Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="moviename" class="form-control"
+                                                id="inputpname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPdesc" class="col-sm-3 col-form-label">Movie
+                                            Certification</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="certification" class="form-control"
+                                                id="inputPdesc">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputcost" class="col-sm-3 col-form-label">Movie Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="description" class="form-control"
+                                                id="inputcost">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputquantity" class="col-sm-3 col-form-label">Movie
+                                            Language</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" formControlName="language" class="form-control"
+                                                id="inputquantity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputquantity" class="col-sm-3 col-form-label">Movie
+                                            Duration</label>
+                                        <div class="col-sm-9">
+                                            <input type="time" formControlName="duration" class="form-control"
+                                                id="inputquantity">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputcategory" class="col-sm-3 col-form-label">Genres</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" formControlName="genre">
+                                                <option disabled>Choose Genre</option>
+                                                <option *ngFor="let genre of genres" [ngValue]="genre">
+                                                    {{genre.genrename}}</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputimage" class="col-sm-3 col-form-label">Movie
+                                            Image</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" formControlName="image"
+                                                (change)="onFileSelected($event)" class="form-control"
+                                                id="inputimage">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" (click)="closeModifyPopup()">
+                                    Close
+                                </button>
+                                <input type="submit" value="Update Product" [disabled]="prodForm.invalid"
+                                    (click)="updateMovie()" class="btn btn-primary" />
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--Modify Modal end-->
+
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

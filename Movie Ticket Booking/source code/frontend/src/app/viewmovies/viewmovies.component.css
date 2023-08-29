@@ -1,0 +1,28 @@
+.movie-list-container {
+  padding: 0 30px;
+}
+
+.movie-list-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+  .movie-list {
+    display: flex;
+     
+    height: 500px;
+    
+  }
+  .movie-list-item a{
+    cursor: pointer;
+  }
+  .movie-list-item {
+    margin-left: 30px;
+    position: relative;
+  }
+  .movie-list-item-img {
+    width: 300x;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+ 
