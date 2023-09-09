@@ -1,0 +1,73 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">Do your Transactions Here!! </div>
+                <div class="card-body">
+                    <form [formGroup]="transactionForm" (ngSubmit)="doTransaction()">
+                        <table class="table">
+                            <tr>
+                                <td>Select Transaction Type</td>
+                                <td><select class="form-select" formControlName="particulars" (change)="selectedvalue()" aria-label="Default select example">
+                                    <option value="1">Cash Deposit By Self</option>
+                                    <option value="2">Cash Withdraw By Self</option>
+                                    <option value="3">Cheque Deposit</option>
+                                    <option value="4">Money Transfer to another Account</option>
+                                  </select></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Cheque Number</td>
+                                <td><input type="text" formControlName="chequenumber" class="form-control"></td>
+                            </tr>
+                            
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Cheque Dated</td>
+                                <td><input type="date" formControlName="chequedate" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Payee Account No.</td>
+                                <td><input type="text" formControlName="payee" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Bank Name</td>
+                                <td><input type="text" formControlName="bank" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Bank IFSC Code</td>
+                                <td><input type="text" formControlName="ifsccode" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='3'">
+                                <td>Cheque amount</td>
+                                <td><input type="text" formControlName="amount" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='4'">
+                                <td>Reciever Account No.</td>
+                                <td><input type="text" formControlName="receiverAccountNo" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='2' || particularvalue=='4'">
+                                <td>Debit Amount</td>
+                                <td><input type="text" formControlName="debitamount" class="form-control"></td>
+                            </tr>
+                            <tr *ngIf="particularvalue=='1'">
+                                <td>Credit Amount</td>
+                                <td><input type="text" formControlName="creditamount" class="form-control"></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td><button type="submit" class="btn btn-primary">Commit Transaction</button></td>
+                                
+                            </tr>
+
+                        </table>
+                                
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>

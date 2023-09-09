@@ -1,0 +1,37 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>Checkbook Request </h5>
+                        <div>
+                            <a class="btn btn-sm btn-primary" (click)="sendRequest()">
+                                Request For New ChequeBook.
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td>No.</td>
+                            <td>Request Date</td>
+                            <td>Status</td>
+                            <td>Accepted Date</td>
+                        </tr>
+                        <tr *ngFor="let request of requests , let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{request.requestdate | date:'medium':'+0000'}}</td>
+                            <td>{{request.chequebookstatus}}</td>
+                            <td>{{request.acceptedDate | date:'medium':'+0000'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>

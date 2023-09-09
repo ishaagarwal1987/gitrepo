@@ -1,0 +1,41 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>Pending Checkbook Request </h5>
+                        <div>
+                            <a class="btn btn-sm btn-primary" (click)="getAllRequests()">
+                                View all Requests.
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th>Account No.</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                            <th>Accepted Date</th>
+                            <th></th>
+                        </tr>
+                        <tr *ngFor="let request of requests , let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{request.accountno.accountno}}</td>
+                            <td>{{request.requestdate | date:'medium':'+0000'}}</td>
+                            <td>{{request.chequebookstatus}}</td>
+                            <td>{{request.acceptedDate | date:'medium':'+0000'}}</td>
+                            <td><span *ngIf="request.acceptedDate==null"><button type="button" class="btn btn-sm btn-primary" (click)="acceptRequest(request)">Accept</button></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+<div class="container-fluid m-4">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>All Customers </h5>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Account No.</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Created On</th>
+                            <th>Role</th>
+                            <th>Can Do Transactions</th>
+                            <th>Authorized</th>
+                        </tr>
+                        <tr *ngFor="let user of users">
+                            <td>{{user.accountno}}</td>
+                            <td>{{user.name}}</td>
+                            <td>{{user.address}}</td>
+                            <td>{{user.phoneNo}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.createdon}}</td>
+                            <td>{{user.role}}</td>
+                            <td class="center">
+                                <input class="form-check-input" type="checkbox" id="active" [(ngModel)]="user.isactive" (change)="onActiveCheckboxChange($event,user)">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" id="permissions" [(ngModel)]="user.permissionGranted" (change)="onPermissionCheckboxChange($event,user)">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

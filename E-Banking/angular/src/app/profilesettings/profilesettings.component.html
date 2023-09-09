@@ -1,0 +1,54 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>Profile Settings</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="updateUser()">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Name</label>
+                            <input type="text" formControlName="name" class="form-control" placeholder="Name">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.name.touched && registerForm.controls.name.invalid">
+                                <b>Name required/Min length is 3 chars</b>
+                            </span>
+                            
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                            <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+                                <b>please enter a valid email.</b>
+                            </span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Phone No.</label>
+                            <input type="text" formControlName="phoneNo" class="form-control" placeholder="Phone No.">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.phoneNo.touched && registerForm.controls.phoneNo.invalid">
+                                <b>Phone No. required of 10 digits.</b>
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Address</label>
+                            <input type="text" formControlName="address" class="form-control" placeholder="Address">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.address.touched && registerForm.controls.address.invalid">
+                                <b>Address required.</b>
+                            </span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Update</button>&nbsp;     
+                                   
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>

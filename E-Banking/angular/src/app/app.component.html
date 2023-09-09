@@ -1,0 +1,17 @@
+<!-- Main Navbar -->
+<div *ngIf="isNavbarVisiableMain">
+    <app-homenavbar></app-homenavbar>
+</div>
+
+<!--Admin Navbar-->
+<div *ngIf="isNavbarVisiableAdmin">
+    <app-admin-dashboard></app-admin-dashboard>
+</div>
+
+
+<!--Client Navbar-->
+<div *ngIf="isNavbarVisiableClient">
+    <app-client-dashboard></app-client-dashboard>
+</div>
+
+<router-outlet></router-outlet>

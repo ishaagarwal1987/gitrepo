@@ -1,0 +1,39 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { User } from '../classes/user';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private apiUrl ="http://localhost:8080/users";
+
+  constructor(private http:HttpClient) { }
+
+  saveUser(user:User) 
+  {
+    return this.http.post(`${this.apiUrl}`,user);
+  }
+  getUser(formData :FormData) : Observable<User>
+  {
+    return this.http.post<User>(`${this.apiUrl+"/login"}`,formData);
+  }
+  getUserByAccountNo(accountno:number) : Observable<User>
+  {
+    return this.http.get<User>(`${this.apiUrl+"/user"}/${accountno}`);
+  }
+  
+  getAllUsers(): Observable<User[]>
+  {
+    return this.http.get<User[]>(`${this.apiUrl}`);
+  }
+  updatePassword(id: number, value: User)
+  {
+    return this.http.put(`${this.apiUrl}/${id}`,value);
+  }
+  updateAutorization(id: number, value: User)
+  {
+    return this.http.put(`${this.apiUrl+"/authorize"}/${id}`,value);
+  }
+}

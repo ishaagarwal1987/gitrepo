@@ -1,0 +1,32 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="card">
+                <div class="card-header">Previous Transactions</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Date</th>
+                            <th>Particulars</th>
+                            <th>Cheque No.</th>
+                            <th>Debit Amount</th>
+                            <th>Credit Amount</th>
+                            <th>Balance</th>
+                        </tr>
+                        <tr *ngFor="let transaction of transactions">
+                            <td>{{transaction.timestamp | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                            <td>{{transaction.particulars}}</td>
+                            <td><span *ngIf="transaction.cheque != null">{{transaction.cheque.chequenumber}}</span></td>
+                            <td>{{transaction.debitamount}}</td>
+                            <td>{{transaction.creditamount}}</td>
+                            <td>{{transaction.balance}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>
