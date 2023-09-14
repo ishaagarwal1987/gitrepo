@@ -1,0 +1,109 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 sidebar pt-4">
+            <ul>
+                <li><a (click)="saveUser()">Add Employee</a></li>
+                <li><a (click)="displayUsers('manager')">View Managers</a></li>
+                <li><a (click)="displayUsers('engineer')">View Engineers</a></li>
+                <li><a (click)="displayUsers('client')">View Customers</a></li>
+                <li><a (click)="displayUsers('fieldworker')">View FieldWorkers</a></li>
+            </ul>
+        </div>
+        <div class="col-10 pt-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{heading | uppercase}} </h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="saveUserBlock">
+                        <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+                            <div class="mb-3">
+                                <select class="form-control" formControlName="role" aria-label="Default select example">
+                                    <option value="admin">Admin</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="engineer">Engineer</option>
+                                    <option value="customer">Customer</option>
+                                    <option value="fieldworker">Field Worker</option>
+                                  </select>
+                                <span class="errorInfo"  *ngIf="registerForm.controls.role.touched && registerForm.controls.role.invalid">
+                                    Please select the usertype.
+                                </span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" formControlName="username" class="form-control" placeholder="Name">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.username.touched && registerForm.controls.username.invalid">
+                                    Name required/Min length is 3 chars
+                                </span>
+                                
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+                                    Please enter a valid email.
+                                </span>
+                            </div>
+                            <div class="mb-3" *ngIf="btnvalue!='Update User'">
+                                <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+                                    Password required.
+                                </span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" formControlName="phoneNo" class="form-control" placeholder="Phone No.">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.phoneNo.touched && registerForm.controls.phoneNo.invalid">
+                                    Phone No. required of 10 digits.
+                                </span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" formControlName="address" class="form-control" placeholder="Address">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.address.touched && registerForm.controls.address.invalid">
+                                    Address required.
+                                </span>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" formControlName="pincode" class="form-control" placeholder="Pincode">
+                                <span class="errorInfo"  *ngIf="registerForm.controls.pincode.touched && registerForm.controls.pincode.invalid">
+                                    Pincode required.
+                                </span>
+                            </div>
+                            
+    
+                            <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">{{btnvalue}}</button>&nbsp;
+                            
+                        </form>
+                    </div>
+                    <div *ngIf="displayUserBlock">
+                        <table class="table">
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Pincode</th>
+                                <th>Phone No.</th>
+                                <th>Email Id</th>
+                                <th>User Type</th>
+                                <th>Operations</th>
+                            </tr>
+                            <tr *ngFor="let user of users, let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{user.username}}</td>
+                                <td>{{user.address}}</td>
+                                <td>{{user.pincode}}</td>
+                                <td>{{user.phoneNo}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.role}}</td>
+                                <td><a (click)="updateUser(user)" class="btn btn-sm btn-warning">Update</a> &nbsp;
+                                    <a (click)="deleteUser(user)" class="btn btn-sm btn-danger">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+.sidebar{
+    background-color: #1976d2;
+    padding-left: 0;
+    border-top: whitesmoke solid 2px;
+}
+ul{
+    margin: 2px;
+}
+li{
+    padding: 6px;
+    list-style: none;
+}
+ul li a{
+    color: whitesmoke;
+    cursor: pointer;
+}

@@ -1,0 +1,58 @@
+<div class="container-fluid m-4">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header">Register Here!! </div>
+                <div class="card-body">
+                    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="username" class="form-control" placeholder="Name">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.username.touched && registerForm.controls.username.invalid">
+                                Name required/Min length is 3 chars
+                            </span>
+                            
+                        </div>
+                        
+                        <div class="mb-3">
+                            <input type="email" formControlName="email" class="form-control" placeholder="name@example.com">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+                                please enter a valid email.
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+                                Password required.
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="phoneNo" class="form-control" placeholder="Phone No.">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.phoneNo.touched && registerForm.controls.phoneNo.invalid">
+                                Phone No. required of 10 digits.
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="address" class="form-control" placeholder="Address">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.address.touched && registerForm.controls.address.invalid">
+                                Address required.
+                            </span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" formControlName="pincode" class="form-control" placeholder="Pincode">
+                            <span class="errorInfo"  *ngIf="registerForm.controls.pincode.touched && registerForm.controls.pincode.invalid">
+                                Pincode required.
+                            </span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid"><i class="fa-solid fa-user-plus"></i> Register</button>&nbsp;
+                        <a routerLink="">Already Have an account? Sign In Here!</a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">All Tickets</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th>Complaint</th>
+                            <th>Date</th>
+                            <th>Feedback</th>
+                            <th>FieldWorker</th>
+                            <th>Status</th>
+                            <th *ngIf="user.role=='manager'">Assign Engineers</th>
+                            <th *ngIf="user.role=='engineer'">Assign Field Worker</th>
+                            <th></th>
+                        </tr>
+                        <tr *ngFor="let complaint of complaints,let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{complaint.complaint}}</td>
+                            <td>{{complaint.timestamp | date}}</td>
+                            <td><span *ngIf="complaint.feedback!=null">{{complaint.feedback.feedback}}</span></td>
+                            <td><span *ngIf="complaint.fieldwork!=null">{{complaint.fieldwork.fieldworker.username}}</span></td>
+                            <td><select #status class="form-control" (change)="onSelected(status.value,complaint)" >
+                                <option value="Raised" [selected]="complaint.status=='Raised'">Raised</option>
+                                <option value="Work in progress" [selected]="complaint.status=='Work in progress'">Work In Progess</option>
+                                <option value="Resolved" [selected]="complaint.status=='Resolved'">Resolved</option>
+                                <option value="Escalated" [selected]="complaint.status=='Escalated'">Escalated</option>
+                              </select></td>
+                            <td>
+                                <select class="form-control" (change)="onEngineerAssigned($event,complaint)" *ngIf="user.role=='manager'">
+                                    <option selected>Choose Engineer</option>
+                                    <option *ngFor="let engineer of engineers" [value]="engineer.userid">
+                                        {{engineer.username}}</option>
+                                    
+                                  </select>
+                                  <select class="form-control" (change)="onFieldWorkerAssigned($event,complaint)" *ngIf="user.role=='engineer'">
+                                    <option selected>Choose FieldWorker</option>
+                                    <option *ngFor="let fieldWorker of fieldWorkers" [value]="fieldWorker.userid">
+                                        {{fieldWorker.username}}</option>
+                                    
+                                  </select>
+                            </td>
+                            <td><a class="btn btn-sm btn-warning" (click)="updateComplaint(complaint)">Update</a></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+
+</div>

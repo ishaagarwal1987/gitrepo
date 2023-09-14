@@ -1,0 +1,28 @@
+.navbar{
+    background-color: #1976d2;
+}
+.navbar a{
+    cursor: pointer;
+    color:whitesmoke;
+}
+input.ng-touched.ng-valid
+{
+    border: 2px green solid;
+}
+input.ng-touched.ng-invalid
+{
+    border: 2px red solid;
+}
+select.ng-touched.ng-valid
+{
+    border: 2px green solid;
+}
+select.ng-touched.ng-invalid
+{
+    border: 2px red solid;
+}
+.errorInfo
+{
+    color: red;
+}
+
